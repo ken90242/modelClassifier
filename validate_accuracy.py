@@ -2,7 +2,7 @@ from tqdm import tqdm
 from splitProcess import outputRes
 from gensim.models import Word2Vec
 
-model = Word2Vec.load('./wiki-zh-model')
+model = Word2Vec.load('./wiki-zh_news-model')
 
 # 食物, 交通mode
 def validate_test(filePath, mode):
