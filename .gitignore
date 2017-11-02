@@ -1,2 +1,7 @@
 train/wiki-zh-article-zht.txt
 wiki-zh-model
+wiki-zh-model
+wiki-zh-model.syn1neg.npy
+wiki-zh-model.wv.syn0.npy
+wiki-zh_news-model.syn1neg.npy
+wiki-zh_news-model.wv.syn0.npy
