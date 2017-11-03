@@ -1,6 +1,8 @@
 import string
-import jieba.posseg as pseg
+from jseg import Jieba
 from classProcess import outPutCate
+
+jieba = Jieba()
 
 stopWords = []
 with open('stopwords_zhTw.txt') as f:
@@ -45,11 +47,10 @@ def vote(candidates):
 def outputRes(query):
 	res = {}
 	cates = []
-	it = pseg.cut(query)
+	it = jieba.seg(query, POS=True)
 	itemName = ''
 	for i in it:
-		word = i.word
-		flag = i.flag
+		(word, flag) = i
 
 		if(word.isdigit()):
 			res['dollar'] = int(word)

@@ -1,6 +1,7 @@
 # 分詞
 import codecs
-import jieba
+from jseg import Jieba
+jieba = Jieba()
 
 infile = 'wiki-zh-article-zht.txt'
 outfile = 'wiki-zh-words-allCut.txt'
@@ -13,7 +14,7 @@ with open(outfile, 'w', encoding='utf-8') as f:
        if i % 10000 == 0:
            print(i)
        line = line.strip()
-       words = jieba.cut(line)
+       words = jieba.seg(line)
        for word in words:
            f.write(word + ' ')
        f.write('\n')
