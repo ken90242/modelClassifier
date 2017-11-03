@@ -62,7 +62,7 @@ def outputRes(query):
 			category_flag_pair = (category, flag)
 			cates.append(category_flag_pair)
 			# if(category == '其他'):
-				# print(word,'  |  ' ,weightsObj)
+			# 	print(word,'  |  ' ,weightsObj)
 
 	candidates = {}
 	for (cate, flag) in cates:

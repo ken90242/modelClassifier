@@ -30,7 +30,10 @@ def validate_test(filePath, mode):
 		  fp += 1
 		elif(category != predictCategory and category == mode):
 		# else:
+			# print(itemName)
 			fn += 1
+		# else:
+			# print(itemName)
 
 	printTestRes(total, tp, fp, fn, tn, mode)
 
