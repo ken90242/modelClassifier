@@ -1,7 +1,7 @@
 from gensim.models import Word2Vec
 model = Word2Vec.load('train/wiki-zh-model')
 
-sample_path = ''
+sample_path = 'sampling/'
 # sample_path = 'train/generate_category_keyWord/'
 def readClasses():
 	food_ref = []
