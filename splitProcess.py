@@ -10,6 +10,7 @@ with open('stopwords_zhTw.txt') as f:
 		stopword = line.replace('\n', '')
 		stopWords.append(stopword)
 
+
 # State of word: n, zg, etc.
 def getWeights(posArr):
 	return len(posArr)
@@ -47,7 +48,10 @@ def vote(candidates):
 def outputRes(query):
 	res = {}
 	cates = []
-	it = jieba.seg(query, pos=True)
+	try:
+		it = jieba.seg(query, pos=True)
+	except Exception as a:
+		print(a)
 	itemName = ''
 	for i in it:
 		(word, flag) = i
@@ -62,8 +66,8 @@ def outputRes(query):
 			(category, weightsObj) = outPutCate(word)
 			category_flag_pair = (category, flag)
 			cates.append(category_flag_pair)
-			# if(category == '其他'):
-			# 	print(word,'  |  ' ,weightsObj)
+			if(category == '找不到'):
+				print(word)
 
 	candidates = {}
 	for (cate, flag) in cates:

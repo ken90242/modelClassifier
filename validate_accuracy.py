@@ -16,7 +16,8 @@ def validate_test(filePath, mode):
 				# total += 1
 				print('[Debug] line #' + total)
 	print('testSet loaded.')
-
+	nof = 0
+	f = 0
 	(total, tp, fp, tn, fn) = (len(testDic.items()), 0, 0, 0, 0)
 	for itemName, category in tqdm(testDic.items()):
 		predictCategory = outputRes(itemName)['category']
@@ -25,14 +26,13 @@ def validate_test(filePath, mode):
 		elif(category == predictCategory and category != mode):
 			tn += 1
 		elif(category != predictCategory and predictCategory == mode):
-		  fp += 1
+			fp += 1
 		elif(category != predictCategory and category == mode):
 		# else:
 			# print(itemName)
 			fn += 1
 		# else:
 			# print(itemName)
-
 	printTestRes(total, tp, fp, fn, tn, mode)
 
 def printTestRes(total, tp, fp, fn, tn, mode):
