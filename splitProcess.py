@@ -47,7 +47,7 @@ def vote(candidates):
 def outputRes(query):
 	res = {}
 	cates = []
-	it = jieba.seg(query, POS=True)
+	it = jieba.seg(query, pos=True)
 	itemName = ''
 	for i in it:
 		(word, flag) = i

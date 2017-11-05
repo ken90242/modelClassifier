@@ -4,7 +4,7 @@ from jseg import Jieba
 jieba = Jieba()
 
 infile = 'wiki-zh-article-zht.txt'
-outfile = 'wiki-zh-words-allCut.txt'
+outfile = 'wiki-zh-words.txt'
 
 descsFile = codecs.open(infile, 'rb', encoding='utf-8')
 i = 0

@@ -1,5 +1,5 @@
 from gensim.models import Word2Vec
-model = Word2Vec.load('./wiki-zh_news-model')
+model = Word2Vec.load('train/wiki-zh-model')
 
 def getSim(ref, query):
 	res = 0.0
@@ -12,7 +12,7 @@ def getSim(ref, query):
 def outPutCate(query):
 	try:
 		cate = {}
-		threshold = 0.15
+		threshold = 0.05
 		a = getSim(food_ref, query)
 		b = getSim(transportation_ref, query)
 		c = getSim(play_ref, query)
@@ -26,8 +26,8 @@ def outPutCate(query):
 		res = '其他'
 		if(estimate > threshold):
 			res = cate[estimate]
-		# else:
-			# print(query,' / ',cate)
+		else:
+			print(query,' / ',cate)
 		return (res, cate)
 	except:
 		return ('其他', cate)
