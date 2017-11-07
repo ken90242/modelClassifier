@@ -50,36 +50,36 @@ def outputRes(query):
 	cates = []
 	try:
 		it = jieba.seg(query, pos=True)
+		itemName = ''
+		for i in it:
+			(word, flag) = i
+
+			if(word.isdigit()):
+				res['dollar'] = int(word)
+			elif(needFiltered(word)):
+				itemName += word
+				continue
+			else:
+				itemName += word
+				(category, weightsObj) = outPutCate(word)
+				category_flag_pair = (category, flag)
+				cates.append(category_flag_pair)
+				if(category == '找不到'):
+					print(word)
+
+		candidates = {}
+		for (cate, flag) in cates:
+			if(cate in candidates):
+				flag_arr = candidates[cate]
+				flag_arr.append(flag)
+			else:
+				flag_arr = [flag]
+			candidates[cate] = flag_arr
+
+		res['category'] = vote(candidates)
+		res['item'] = itemName.strip()
 	except Exception as a:
 		print(a)
-	itemName = ''
-	for i in it:
-		(word, flag) = i
-
-		if(word.isdigit()):
-			res['dollar'] = int(word)
-		elif(needFiltered(word)):
-			itemName += word
-			continue
-		else:
-			itemName += word
-			(category, weightsObj) = outPutCate(word)
-			category_flag_pair = (category, flag)
-			cates.append(category_flag_pair)
-			if(category == '找不到'):
-				print(word)
-
-	candidates = {}
-	for (cate, flag) in cates:
-		if(cate in candidates):
-			flag_arr = candidates[cate]
-			flag_arr.append(flag)
-		else:
-			flag_arr = [flag]
-		candidates[cate] = flag_arr
-
-	res['category'] = vote(candidates)
-	res['item'] = itemName.strip()
 	return res
 
 def needFiltered(s):

@@ -4,7 +4,7 @@ import json
 
 query = sys.argv[1]
 
-host = '40.71.194.227'
+host = '127.0.0.1'
 
 # The same port as used by the server
 port = 12345
