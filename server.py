@@ -1,6 +1,6 @@
 import socket
 import json
-from splitProcess import outputRes
+from src.splitProcess import outputRes
 
 # Symbolic name meaning all available interfaces
 host = '127.0.0.1'

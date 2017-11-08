@@ -1,4 +1,2 @@
 __pycache__/
-train/wiki-zh-model
-train/wiki-zh-model.syn1neg.npy
-train/wiki-zh-model.wv.syn0.npy
+model/

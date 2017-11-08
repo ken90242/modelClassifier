@@ -1,11 +1,14 @@
+#!/usr/bin/python 
+# -*- coding: utf-8 -*-
+import io
 import string
 from jseg import Jieba
-from classProcess import outPutCate
+from .classProcess import outPutCate
 
 jieba = Jieba()
 
 stopWords = []
-with open('stopwords_zhTw.txt') as f:
+with io.open('src/stopwords_zhTw.txt','r',encoding='utf-8') as f:
 	for line in f:
 		stopword = line.replace('\n', '')
 		stopWords.append(stopword)
@@ -92,6 +95,12 @@ def needFiltered(s):
 	elif(s in stopWords):
 		flag = True
 	return flag
+
+def isDummy(s):
+	if(s == '' or s.isspace()):
+		return True
+	else:
+		return False
 
 def isDummy(s):
 	if(s == '' or s.isspace()):

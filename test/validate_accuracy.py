@@ -1,25 +1,38 @@
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
 from tqdm import tqdm
-from splitProcess import outputRes
+from ..src import outputRes
 from gensim.models import Word2Vec
+from collections import OrderedDict
+import codecs
 
-# 食物, 交通mode
+#交通食物mode
 def validate_test(filePath, mode):
-	testDic = {}
+	testDic = OrderedDict()
 	print('Start loading testSet..')
-	with open(filePath) as f:
-		for line in f:
-			try:
-				(itemId, category, itemName) = line.split(',')
-				itemName = itemName.replace('\n', '')
-				testDic[itemName] = category
-			except:
-				# total += 1
-				print('[Debug] line #' + total)
+	
+	descsFile = codecs.open(filePath, 'rb', encoding='utf8')
+	
+	#with open(filePath,'r',encoding='utf-8') as f:
+	for line in descsFile:
+		try:
+			(itemId, category, itemName) = line.split(',')
+			itemName = itemName.replace('\n', '').strip()
+			#category = category.replace('\n', '')
+			#if category=='交通':
+			testDic[itemName] = category
+			#print ("dict ",category," ",itemName)
+		except:
+			# total += 1
+			#print('[Debug] line #' + total)
+			print ("csv error")
 	print('testSet loaded.')
 	nof = 0
 	f = 0
 	(total, tp, fp, tn, fn) = (len(testDic.items()), 0, 0, 0, 0)
-	for itemName, category in tqdm(testDic.items()):
+	for itemName, category in testDic.items():
+		#print ("dict: ", itemName,category)
+		#print ("result: ",outputRes(itemName))
 		predictCategory = outputRes(itemName)['category']
 		if(category == predictCategory and category == mode):
 			tp += 1
@@ -53,5 +66,5 @@ def printTestRes(total, tp, fp, fn, tn, mode):
 	print('F1:' + str(f1))
 	print('-----------------------------------------------------------------------------------')
 
-validate_test('testSet.csv', '飲食')
-validate_test('testSet.csv', '交通')
+validate_test('testSet.txt', '飲食')
+validate_test('testSet.txt', '交通')
