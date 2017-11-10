@@ -80,7 +80,7 @@ def outputRes(query):
 			candidates[cate] = flag_arr
 
 		res['category'] = vote(candidates)
-		res['item'] = itemName.strip()
+		res['item'] = itemName.replace('元', '').replace('塊', '').replace('錢', '').strip()
 	except Exception as a:
 		print(a)
 	return res
