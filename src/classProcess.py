@@ -48,17 +48,21 @@ def readClasses():
 
 def getSim(ref, query):
 	res = 0.0
-	count = 0
+	#count = 0
+	rankCount = 10
+	simlist = []#存放和每個sample字的相似度
+	
 	for item in ref:
 		try:
-			res += model.similarity(item, query)
-			count += 1
+			#res += model.similarity(item, query)
+			#count += 1
+			simlist.append(model.similarity(item, query))
 		except Exception as ex:
 			continue
-	if(count == 0):
-		return 0.0
-	else:
-		return res/count
+	simlist.sort(reverse=True)#由大到小排序
+	topsim = simlist[:rankCount]#取出前10高的
+	res = sum(topsim) / rankCount
+	return res
 
 def outPutCate(query):
 	(food_ref, clothes_ref, live_ref, go_ref, education_ref, play_ref) = readClasses()
