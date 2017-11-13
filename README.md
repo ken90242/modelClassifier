@@ -1,7 +1,7 @@
 # 技術文件
 tech.pdf：記載我們的實現原理。
 # 重要目錄
-1. 模型：model目錄(由於model檔案過大，恕無法上傳)
+1. 模型：model目錄(由於model檔案過大，放於Google drive：https://goo.gl/m3D3YS)
 2. 訓練：train/(由於訓練資料集合過大，恕無法上傳)
 3. 測試：test/
 4. 切詞、分類：src/
